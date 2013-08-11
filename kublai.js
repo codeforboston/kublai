@@ -93,6 +93,9 @@ kublai.get('/:layer/tile(.json)?', function(req, res, next) {
 		});
 	  } else {
 		resp.tilejson = '2.1.0';
+		if(resp.scheme){
+			delete resp.scheme;
+		}
 		resp.tiles = [];
 		let subDomains = ['a', 'b', 'c', 'd'];
 		if(domain.indexOf('*')===-1){
