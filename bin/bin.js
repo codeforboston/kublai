@@ -17,5 +17,5 @@ kublai({
 	host:program.ip,
 	port:program.port,
 	path:program.tile,
-	domain:program.domain
+	domain:program.domains
 });
