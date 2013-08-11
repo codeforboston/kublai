@@ -64,8 +64,7 @@ kublai.get('/:layer/preview', function(req, res, next) {
   }
 });
 function templateDomain(sub){
-	domain.replace('*',sub);
-	return domain;
+	return domain.replace('*',sub);
 }
 kublai.get('/:layer/tile', function(req, res, next) {
   if (layers.has(req.params.layer)) {
