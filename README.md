@@ -7,8 +7,10 @@ Install with:
 
 ```bash
 npm install -g kublai
+```
 
-  Usage: bin.js [options]
+```
+  Usage: kublai [options]
 
   Options:
 
@@ -16,8 +18,8 @@ npm install -g kublai
     -V, --version                  output the version number
     -i, --ip <host>                IP address to bind to, defaults to process.env.IP or 127.0.0.1
     -p, --port <port>              port to listen on, defaults to process.env.PORT or 7027
-    -n, --number <forks>           number of forks, defaults to require("os").cpus().length
     -t, --tile <path>              path to folder with tiles, defaults to "."
+    -n, --number <forks>           number of forks, defaults to require("os").cpus().length
     -d, --domains <domain>         out domains, defaults to ip:port, add a "*" for subdomains
     -c, --config <path to config>  path to a config file
 

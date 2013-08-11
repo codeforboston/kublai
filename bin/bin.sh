@@ -6,4 +6,4 @@ else
     DIR=$(dirname $0) ;
 fi ;
 
-node --harmony $DIR/bin.js $@
+node --harmony $DIR/kublai $@
