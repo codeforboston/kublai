@@ -8,7 +8,6 @@ Install with:
 ```bash
 npm install -g kublai
 
-```
   Usage: bin.js [options]
 
   Options:
