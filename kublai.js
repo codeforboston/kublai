@@ -7,7 +7,9 @@ const fs = require('fs');
 const kublai = express();
 
 kublai.use(express.compress());
+kublai.use(express.favicon(__dirname + '/public/favicon.ico'));
 kublai.use(express.logger('dev'));
+kublai.use(express.static(__dirname + '/public'));
 kublai.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');

@@ -6,9 +6,9 @@
 		<title>
 			Kublai!
 		</title>
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+		<link rel="stylesheet" href="../leaflet.css" />
 		<!--[if lte IE 8]>
-			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+			<link rel="stylesheet" href="../leaflet.ie.css" />
 		<![endif]-->
 		<style>
 			html { height: 100% }
@@ -18,12 +18,29 @@
 	</head>
 	<body>
 		<div id="map"></div>
-		<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+		<script src="../leaflet.js"></script>
+		<script src="../leaflet.utfgrid.js"></script>
+		<script src="../mustache.js"></script>
 		<script>
 				function startMap(tileJSON){
+				var popup = L.popup();
 				var map = L.map('map',{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).setView([tileJSON.center[1], tileJSON.center[0]],tileJSON.center[2]);
 				
 				L.tileLayer(tileJSON.leaflet).addTo(map);
+				var grids,template;
+				if(tileJSON.leafletGrid){
+					template = Mustache.compile(tileJSON.template);
+					grids = new L.UtfGrid(tileJSON.leafletGrid+"?callback={cb}");
+					grids.on('click', function (e) {
+						if (e.data) {
+							e.data.__full__=true;
+							popup.setLatLng(e.latlng)
+								.setContent(template(e.data))
+								.openOn(map);
+						}
+					});
+					map.addLayer(grids);
+				}
 		}
 		</script>
 		<script src="tile?callback=startMap"></script>
