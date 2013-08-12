@@ -27,4 +27,4 @@ npm install -g kublai
 
 config file should be a json file with keys coresponding to the bracketed terms, an object like this is what kublai takes if used in node.
 
-The [demo](http://codeforboston.github.io/kublai) is a tiled version of [this cold coast map](http://www.mass.gov/anf/research-and-tech/it-serv-and-support/application-serv/office-of-geographic-information-massgis/datalayers/usgshistcoastal.html).
+The [demo](http://codeforboston.github.io/kublai) is a tiled version of [this old map of the coasts](http://www.mass.gov/anf/research-and-tech/it-serv-and-support/application-serv/office-of-geographic-information-massgis/datalayers/usgshistcoastal.html).
