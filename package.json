@@ -1,15 +1,15 @@
 {
   "name": "kublai",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "a tile server",
   "author": {
     "name": "Calvin Metcalf",
     "email": "calvin.metcalf@gmail.com",
     "url": "http://github.com/calvinmetcalf"
   },
-  "bin":"./bin/bin.sh",
-  "main":"./server.js",
-  "repository":"git@github.com:codeforboston/kublai.git",
+  "bin": "./bin/bin.sh",
+  "main": "./server.js",
+  "repository": "git@github.com:codeforboston/kublai.git",
   "engines": {
     "node": ">= 10.0.0",
     "npm": ">= 1.0.0"
@@ -21,6 +21,7 @@
     "express": "3.x",
     "tilelive": ">=0.0.1",
     "mbtiles": ">=0.0.1",
-    "commander": "~2.0.0"
+    "commander": "~2.0.0",
+    "mustache": "~0.7.2"
   }
 }

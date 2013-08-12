@@ -1,10 +1,10 @@
 
 <!doctype html>
 <html lang="en">
-    <head>
+	<head>
 		<meta charset='utf-8'/>
 		<title>
-			Kublai!
+			{{layer}}
 		</title>
 		<link rel="stylesheet" href="../leaflet.css" />
 		<!--[if lte IE 8]>
@@ -22,7 +22,7 @@
 		<script src="../leaflet.utfgrid.js"></script>
 		<script src="../mustache.js"></script>
 		<script>
-            var map;
+			var map;
 			function startMap(tileJSON){
 				var popup = L.popup();
 				map = L.map('map',{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).setView([tileJSON.center[1], tileJSON.center[0]],tileJSON.center[2]);
@@ -35,25 +35,25 @@
 					grids.on('click', function (e) {
 						if (e.data) {
 							e.data.__full__=true;
-                            content = template(e.data);
-                            if(!content){
-                                e.data.__teaser__=true;
-                                content = template(e.data);
-                            }
-                            if(!content){
-                                e.data.__location__=true;
-                                content = template(e.data);
-                            }
-                            if(content){
-							    popup.setLatLng(e.latlng)
-								    .setContent(content)
-								    .openOn(map);
-                            }
+							content = template(e.data);
+							if(!content){
+								e.data.__teaser__=true;
+								content = template(e.data);
+							}
+							if(!content){
+								e.data.__location__=true;
+								content = template(e.data);
+							}
+							if(content){
+								popup.setLatLng(e.latlng)
+									.setContent(content)
+									.openOn(map);
+							}
 						}
 					});
 					map.addLayer(grids);
 				}
-		    }
+			}
 		</script>
 		<script src="tile?callback=startMap"></script>
 	</body>
