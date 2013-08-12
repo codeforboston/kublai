@@ -22,15 +22,16 @@
 		<script src="../leaflet.utfgrid.js"></script>
 		<script src="../mustache.js"></script>
 		<script>
-				function startMap(tileJSON){
+            var map;
+			function startMap(tileJSON){
 				var popup = L.popup();
-				var map = L.map('map',{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).setView([tileJSON.center[1], tileJSON.center[0]],tileJSON.center[2]);
+				map = L.map('map',{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).setView([tileJSON.center[1], tileJSON.center[0]],tileJSON.center[2]);
 				
-				L.tileLayer(tileJSON.leaflet).addTo(map);
+				L.tileLayer(tileJSON.leaflet,{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).addTo(map);
 				var grids,template;
 				if(tileJSON.leafletGrid){
 					template = Mustache.compile(tileJSON.template);
-					grids = new L.UtfGrid(tileJSON.leafletGrid+"?callback={cb}");
+					grids = new L.UtfGrid(tileJSON.leafletGrid+"?callback={cb}",{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom});
 					grids.on('click', function (e) {
 						if (e.data) {
 							e.data.__full__=true;
@@ -41,7 +42,7 @@
 					});
 					map.addLayer(grids);
 				}
-		}
+		    }
 		</script>
 		<script src="tile?callback=startMap"></script>
 	</body>
