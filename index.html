@@ -39,7 +39,11 @@
 		<script src="leaflet.js"></script>
         <script src="leaflet.hash.js"></script>
 		<script>
-			var map = L.map('map',{maxZoom:15,minZoom:5}).setView([42.2033,-70.8982],12).addHash();
+			var map = L.map('map',{maxZoom:15,minZoom:5});
+            if(!location.hash){
+                map.setView([42.2033,-70.8982],12);
+            }
+            map.addHash();
             var historical = L.tileLayer('http://{s}.tiles.electronbolt.com/historical/{z}/{x}/{y}.png',{maxZoom:15,minZoom:5}).addTo(map);
             var MapQuestOpen_OSM = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
                 attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
