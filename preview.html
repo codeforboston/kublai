@@ -28,16 +28,27 @@
 				map = L.map('map',{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).setView([tileJSON.center[1], tileJSON.center[0]],tileJSON.center[2]);
 				
 				L.tileLayer(tileJSON.leaflet,{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom}).addTo(map);
-				var grids,template;
+				var grids,template,content;
 				if(tileJSON.leafletGrid){
 					template = Mustache.compile(tileJSON.template);
 					grids = new L.UtfGrid(tileJSON.leafletGrid+"?callback={cb}",{maxZoom:tileJSON.maxzoom,minZoom:tileJSON.minzoom});
 					grids.on('click', function (e) {
 						if (e.data) {
 							e.data.__full__=true;
-							popup.setLatLng(e.latlng)
-								.setContent(template(e.data))
-								.openOn(map);
+                            content = template(e.data);
+                            if(!content){
+                                e.data.__teaser__=true;
+                                content = template(e.data);
+                            }
+                            if(!content){
+                                e.data.__location__=true;
+                                content = template(e.data);
+                            }
+                            if(content){
+							    popup.setLatLng(e.latlng)
+								    .setContent(content)
+								    .openOn(map);
+                            }
 						}
 					});
 					map.addLayer(grids);

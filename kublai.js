@@ -3,7 +3,6 @@ module.exports = function(port, ip, tilePath, domain) {
 const mbtiles = require('mbtiles');
 const tilelive = require('tilelive');
 const express = require('express');
-const fs = require('fs');
 const kublai = express();
 
 kublai.use(express.compress());
@@ -39,7 +38,7 @@ kublai.get('/:layer/:z/:x/:y.png', function(req, res, next) {
   if (layers.has(req.params.layer)) {
 	layers.get(req.params.layer).getTile(req.params.z, req.params.x, req.params.y, function(err, tile) {
 	  if (err) {
-		res.jsonp({
+		res.jsonp(404,{
 		  err: err
 		});
 	  } else {
@@ -50,7 +49,7 @@ kublai.get('/:layer/:z/:x/:y.png', function(req, res, next) {
 	  }
 	});
   } else {
-	res.jsonp({
+	res.jsonp(404,{
 	  err: 'unknown layer'
 	});
   }
@@ -59,7 +58,7 @@ kublai.get('/:layer/:z/:x/:y.(grid.)?json', function(req, res, next) {
   if (layers.has(req.params.layer)) {
 	layers.get(req.params.layer).getGrid(req.params.z, req.params.x, req.params.y, function(err, grid) {
 	  if (err) {
-		res.jsonp({
+		res.jsonp(404,{
 		  err: err
 		});
 	  } else {
@@ -67,7 +66,7 @@ kublai.get('/:layer/:z/:x/:y.(grid.)?json', function(req, res, next) {
 	  }
 	});
   } else {
-	res.jsonp({
+	res.jsonp(404,{
 	  err: 'unknown layer'
 	});
   }
@@ -76,7 +75,7 @@ kublai.get('/:layer/preview', function(req, res, next) {
   if (layers.has(req.params.layer)) {
 	res.sendfile(__dirname +'/preview.html');
   } else {
-	res.jsonp({
+	res.jsonp(404,{
 	  err: 'unknown layer'
 	});
   }
