@@ -1,7 +1,7 @@
 {
   "name": "kublai",
-  "version": "0.1.5",
-  "description": "a tile server",
+  "version": "0.2.0",
+  "description": "a easy to use mbtile server",
   "author": {
     "name": "Calvin Metcalf",
     "email": "calvin.metcalf@gmail.com",
