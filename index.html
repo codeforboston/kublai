@@ -49,7 +49,8 @@
                 attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 	            subdomains: '1234'
             });
-            var lc = L.control.layers({"Historic":historical,"Current (Map Quest Open)":MapQuestOpen_OSM},{},{collapsed:false}).addTo(map);
+            var vintage = L.tileLayer('http://{s}.tiles.electronbolt.com/vintage/{z}/{x}/{y}.png',{maxZoom:13,minZoom:5});
+            var lc = L.control.layers({"~1897 (max zoom 15)":historical,"~1847 (max zoom 13)":vintage,"Current (Map Quest Open)":MapQuestOpen_OSM},{},{collapsed:false}).addTo(map);
 		</script>
 	</body>
 </html>
