@@ -22,7 +22,7 @@
 	mbtiles.registerProtocols(tilelive);
 	
 	function arrayEquality(a,b){
-		if(!(Array.isArray(a)&&Array.isArray(a))){
+		if(!(Array.isArray(a)&&Array.isArray(b))){
 			return false;
 		}else if(a.length!==b.length){
 			return false;
